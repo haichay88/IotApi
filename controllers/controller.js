@@ -12,7 +12,7 @@ exports.insert = (req, res) => {
             Static.find({ userId: "1" })
                 .then(sv => {
                    
-                    res.send(sv[0].lam1);
+                    res.send(sv[0].lam1+sv[0].lam2);
 
 
                 }).catch(er => {
@@ -32,6 +32,7 @@ exports.insert = (req, res) => {
 
 
 exports.updateLam = (req, res) => {
+   
     const static = new Static({
         lam1: req.body.lam1,
         lam2: req.body.lam2,
@@ -43,7 +44,7 @@ exports.updateLam = (req, res) => {
             if (sv.length > 0) {
                 Static.updateOne({ userId: "1" }, { $set: { lam1: req.body.lam1, lam2: req.body.lam2 } })
                     .then(sv => {
-                        res.send(sv);
+                        res.send(static);
                     });
             }else{
                 static.save()

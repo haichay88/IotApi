@@ -3,7 +3,7 @@ const History = require('../models/history.model.js');
 
 exports.insert = (req, res) => {
 
-    console.log(req._headers);
+    console.log(req.data);
 
     Static.find({ userId: "1" })
         .then(sv => {

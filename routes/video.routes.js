@@ -7,6 +7,6 @@ module.exports = (app) => {
     // Retrieve all Notes
     app.get('/data/', notes.insert);
     app.post('/data/', notes.insert);
-
+    app.get('/static/', notes.getStatic);
    
 }

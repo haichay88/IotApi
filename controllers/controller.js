@@ -8,7 +8,7 @@ exports.insert = (req, res) => {
     Static.find({ userId: "1" })
         .then(sv => {
 
-            res.send(sv[0].lam1 + sv[0].lam2);
+            res.send(sv[0].lam1 + sv[0].lam2+ sv[0].lam3+ sv[0].lam4);
 
 
         }).catch(er => {
@@ -20,11 +20,33 @@ exports.insert = (req, res) => {
 };
 
 
+exports.getStatic = (req, res) => {
+
+   
+
+    Static.find({ userId: "1" })
+        .then(sv => {
+
+            res.send(sv);
+
+
+        }).catch(er => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the Note."
+            });
+        });
+
+};
+
+
+
 exports.updateLam = (req, res) => {
 
     const static = new Static({
         lam1: req.body.lam1,
         lam2: req.body.lam2,
+        lam3: req.body.lam3,
+        lam4: req.body.lam4,
         userId: "1"
     });
 

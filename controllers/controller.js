@@ -53,7 +53,10 @@ exports.updateLam = (req, res) => {
     Static.find({ userId: static.userId })
         .then(sv => {
             if (sv.length > 0) {
-                Static.updateOne({ userId: "1" }, { $set: { lam1: req.body.lam1, lam2: req.body.lam2 } })
+                Static.updateOne({ userId: "1" }, { $set: { lam1: req.body.lam1, 
+                    lam2: req.body.lam2,
+                    lam3: req.body.lam3,
+                    lam4: req.body.lam4, } })
                     .then(sv => {
                         res.send(static);
                     });

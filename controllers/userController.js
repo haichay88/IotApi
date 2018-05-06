@@ -106,7 +106,7 @@ exports.addDevice = (req, res) => {
 
 exports.getDevice = (req, res) => {
 
-
+console.log(req.body);
     User.find(
         { "devices._id": ObjectId(req.body.deviceId) },
         { "devices.$._id": 1}
@@ -114,7 +114,7 @@ exports.getDevice = (req, res) => {
         .then(sv => {
             if (sv.length > 0) {
 
-                res.send(sv[0]);
+                res.send(sv[0].devices[0]);
 
             } else {
                 res.status(404).send({

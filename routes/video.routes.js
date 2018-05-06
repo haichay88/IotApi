@@ -12,5 +12,10 @@ module.exports = (app) => {
 
     app.post('/user/Register', user.register);
     app.post('/user/login', user.login);
+    app.post('/user/addDevice', user.addDevice);
+
+    app.post('/device/getDevice', user.getDevice);
+    app.get('/user/getDevices', user.getDevices);
+    app.post('/device/updateDevice', user.updateDevice);
    
 }

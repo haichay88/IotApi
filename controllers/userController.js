@@ -37,7 +37,7 @@ exports.register = (req, res) => {
 
 
 exports.login = (req, res) => {
-
+console.log(req.body);
     var user = new User({
         userName: req.body.userName,
         password: req.body.password,

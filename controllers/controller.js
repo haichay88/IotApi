@@ -1,5 +1,5 @@
 const Static = require('../models/static.model.js');
-const History = require('../models/history.model.js');
+
 
 exports.insert = (req, res) => {
 

@@ -1,6 +1,7 @@
 module.exports = (app) => {
     const notes = require('../controllers/controller.js');
     const user = require('../controllers/userController.js');
+    const modelCtl = require('../controllers/modelDeviceController.js');
 
     // Create a new Note
     app.post('/update', notes.updateLam);
@@ -17,5 +18,9 @@ module.exports = (app) => {
     app.post('/device/getDevice', user.getDevice);
     app.get('/user/getDevices', user.getDevices);
     app.post('/device/updateDevice', user.updateDevice);
+
+    app.post('/model/addModelDevice', modelCtl.addModelDevice);
+    app.post('/model/getModelDevice', modelCtl.getModelDevice);
+    app.get('/model/getModelDevices', modelCtl.getModelDevices);
    
 }

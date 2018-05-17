@@ -49,7 +49,7 @@ console.log(req.body);
                     userId: sv[0]._id,
                     userName: sv[0].userName
                 }
-                console.log(result);
+                
                 res.send(result);
             } else {
                 res.status(404).send({
@@ -68,16 +68,12 @@ console.log(req.body);
 
 exports.addDevice = (req, res) => {
 
-
+    console.log(req.body);
     User.find({ _id: req.body.userId })
         .then(sv => {
             if (sv.length > 0) {
                 var usr = sv[0];
-                usr.devices.push({
-                    name: req.body.deviceName,
-                    seri: req.body.deviceSeri,
-                    IsOn: "0"
-                });
+                usr.devices.push.apply(usr.devices,req.body.devices);
                 // add device to user
                 User.updateOne({ _id: req.body.userId }, {
                     $set: {
@@ -181,7 +177,7 @@ exports.updateDevice = (req, res) => {
 };
 
 
-exports.updateLam = (req, res) => {
+exports.deleteAllDevice = (req, res) => {
 
     const static = new Static({
         lam1: req.body.lam1,

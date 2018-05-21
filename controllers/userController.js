@@ -179,40 +179,32 @@ exports.updateDevice = (req, res) => {
 
 exports.deleteAllDevice = (req, res) => {
 
-    const static = new Static({
-        lam1: req.body.lam1,
-        lam2: req.body.lam2,
-        lam3: req.body.lam3,
-        lam4: req.body.lam4,
-        userId: "1"
-    });
-
-    Static.find({ userId: static.userId })
+    User.find({ _id: req.body.userId })
         .then(sv => {
             if (sv.length > 0) {
-                Static.updateOne({ userId: "1" }, {
+                var usr = sv[0];
+                usr.devices=[];
+                // add device to user
+                User.updateOne({ _id: req.body.userId }, {
                     $set: {
-                        lam1: req.body.lam1,
-                        lam2: req.body.lam2,
-                        lam3: req.body.lam3,
-                        lam4: req.body.lam4,
+                        devices: usr.devices
                     }
                 })
-                    .then(sv => {
-                        res.send(static);
+                    .then(response => {
+                        res.send(response[0]);
                     });
-            } else {
-                static.save()
-                    .then(data => {
-                        res.send(data);
-                    }).catch(err => {
-                        res.status(500).send({
-                            message: err.message || "Some error occurred while creating the Note."
-                        });
-                    });;
-            }
-        })
-        .catch(er => {
 
+
+            } else {
+                res.status(404).send({
+                    message: " not found"
+                });
+            }
+
+        }).catch(er => {
+            res.status(500).send({
+                message: er.message || "Some error occurred while creating the Note."
+            });
         });
+
 };

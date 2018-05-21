@@ -18,6 +18,7 @@ module.exports = (app) => {
     app.post('/device/getDevice', user.getDevice);
     app.get('/user/getDevices', user.getDevices);
     app.post('/device/updateDevice', user.updateDevice);
+    app.post('/device/deleteAllDevice', user.deleteAllDevice);
 
     app.post('/model/addModelDevice', modelCtl.addModelDevice);
     app.post('/model/getModelDevice', modelCtl.getModelDevice);

@@ -8,6 +8,11 @@ var userSchema = mongoose.Schema({
         name:String,
         seri:String,
         channel:Number,
+        channelCode:String,
+        isRepeat:Boolean,
+        repeatTime:Number,
+        isSetTime:Boolean,
+        setTime:String
         
     }]
 });

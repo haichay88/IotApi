@@ -25,5 +25,5 @@ module.exports = (app) => {
     app.post('/model/addModelDevice', modelCtl.addModelDevice);
     app.post('/model/getModelDevice', modelCtl.getModelDevice);
     app.get('/model/getModelDevices', modelCtl.getModelDevices);
-   
+    app.post('/model/deleteModel', modelCtl.deleteModel);
 }

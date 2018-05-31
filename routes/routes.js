@@ -13,6 +13,8 @@ module.exports = (app) => {
 
     app.post('/user/Register', user.register);
     app.post('/user/login', user.login);
+    app.post('/user/updateUser', user.updateUser);
+    app.get('/user/getUser', user.getUser);
     app.post('/user/addDevice', user.addDevice);
 
     app.post('/device/getDevice', user.getDevice);

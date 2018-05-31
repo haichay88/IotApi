@@ -4,6 +4,10 @@ var userSchema = mongoose.Schema({
     userName: String,
     password: String,
     fullName:String,
+    address:String,
+    phone:String,
+    firstName:String,
+    lastName:String,
     devices: [{
         name:String,
         seri:String,
@@ -13,7 +17,7 @@ var userSchema = mongoose.Schema({
         repeatTime:Number,
         isSetTime:Boolean,
         setTime:String
-        
+
     }]
 });
 

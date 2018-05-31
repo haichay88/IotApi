@@ -37,7 +37,7 @@ exports.register = (req, res) => {
 
 
 exports.login = (req, res) => {
-console.log(req.body);
+
     var user = new User({
         userName: req.body.userName,
         password: req.body.password,
@@ -49,8 +49,74 @@ console.log(req.body);
                     userId: sv[0]._id,
                     userName: sv[0].userName
                 }
-                
+
                 res.send(result);
+            } else {
+                res.status(404).send({
+                    message: " not found"
+                });
+            }
+
+        }).catch(er => {
+            res.status(500).send({
+                message: er.message || "Some error occurred while creating the Note."
+            });
+        });
+
+};
+
+exports.getUser = (req, res) => {
+    User.find({ _id: req.body.userId })
+        .then(sv => {
+            if (sv.length > 0) {
+              var result = {
+                  userId: sv[0]._id,
+                  userName: sv[0].userName,
+                  firstName:sv[0].firstName,
+                  lastName:sv[0].lastName,
+                  address:sv[0].address,
+                  phone:sv[0].phone
+
+              }
+                res.send(result);
+            } else {
+                res.status(404).send({
+                    message: " not found"
+                });
+            }
+
+        }).catch(er => {
+            res.status(500).send({
+                message: er.message || "Some error occurred while creating the Note."
+            });
+        });
+
+};
+
+
+exports.updateUser = (req, res) => {
+    console.log(req.body);
+
+    User.find({ _id: req.body.userId })
+        .then(sv => {
+            if (sv.length > 0) {
+                var usr = sv[0];
+
+
+                // add device to user
+                User.updateOne({ _id: req.body.userId }, {
+                    $set: {
+                      address:req.body.address,
+                      phone:req.body.phone,
+                      firstName:req.body.firstName,
+                      lastName:req.body.lastName
+                    }
+                })
+                    .then(response => {
+                        res.send(response[0]);
+                    });
+
+
             } else {
                 res.status(404).send({
                     message: " not found"
@@ -150,7 +216,7 @@ exports.getDevices = (req, res) => {
 };
 exports.updateDevice = (req, res) => {
     console.log(req.body);
-   
+
     User.find({ _id: req.body.userId })
         .then(sv => {
             if (sv.length > 0) {
@@ -159,7 +225,7 @@ exports.updateDevice = (req, res) => {
                     return item._id !=req.body.device._id;
                 });
                 devices.push(req.body.device);
-                
+
                 // add device to user
                 User.updateOne({ _id: req.body.userId }, {
                     $set: {
@@ -184,6 +250,8 @@ exports.updateDevice = (req, res) => {
         });
 
 };
+
+
 
 
 exports.deleteAllDevice = (req, res) => {
@@ -229,7 +297,7 @@ exports.deleteDevice = (req, res) => {
                 return item._id !=req.body.device._id;
             });
             //devices.push(req.body.device);
-            
+
             // add device to user
             User.updateOne({ _id: req.body.userId }, {
                 $set: {

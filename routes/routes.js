@@ -1,12 +1,8 @@
 module.exports = (app) => {
-    const notes = require('../controllers/controller.js');
+    const device = require('../controllers/deviceController.js');
     const user = require('../controllers/userController.js');
     const modelCtl = require('../controllers/modelDeviceController.js');
 
-    // Create a new Note
-    app.post('/update', notes.updateLam);
-
-    // Retrieve all Notes
     
 
     app.post('/user/Register', user.register);
@@ -15,14 +11,13 @@ module.exports = (app) => {
     app.post('/user/changePass', user.changePass);
     app.get('/user/getUser', user.getUser);
     app.get('/user/getAllUser', user.getAllUser);
-    app.post('/user/addDevice', user.addDevice);
-    app.get('/user/getDevices', user.getDevices);
 
-    app.post('/device/getDevice', user.getDevice);
-    
-    app.post('/device/updateDevice', user.updateDevice);
-    app.post('/device/deleteAllDevice', user.deleteAllDevice);
-    app.post('/device/deleteDevice', user.deleteDevice);
+    app.post('/user/addDevice', device.addDevice);
+    app.get('/user/getDevices', device.getDevices);
+    app.post('/device/getDevice', device.getDevice);  
+    app.post('/device/updateDevice', device.updateDevice);
+    app.post('/device/deleteAllDevice', device.deleteAllDevice);
+    app.post('/device/deleteDevice', device.deleteDevice);
 
 
     app.post('/model/addModelDevice', modelCtl.addModelDevice);

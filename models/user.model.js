@@ -8,6 +8,7 @@ var userSchema = mongoose.Schema({
     phone:String,
     firstName:String,
     lastName:String,
+    isAdmin:Boolean,
     devices: [{
         name:String,
         seri:String,
